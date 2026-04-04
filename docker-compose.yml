@@ -1,0 +1,49 @@
+# ==========================================================
+# Docker Compose 構成
+#
+# app  : Next.js 16 開発サーバー  (http://localhost:3000)
+# test : Vitest ウォッチモード
+#
+# ポイント: anonymous volume で node_modules をホストに露出させない
+# パッケージ追加: docker compose exec app npm install <pkg>
+# ==========================================================
+
+name: kids-app
+
+services:
+  # --------------------------------------------------------
+  # app: 開発サーバー
+  # --------------------------------------------------------
+  app:
+    build:
+      context: .
+      target: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app                  # ソースコードを bind mount
+      - /app/node_modules       # anonymous vol: ホストを汚さない
+      - /app/.next              # anonymous vol: ビルドキャッシュ
+    environment:
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
+      - HOSTNAME=0.0.0.0        # コンテナ外からアクセス可能にする
+    restart: unless-stopped
+
+  # --------------------------------------------------------
+  # test: Vitest ウォッチモード
+  # --------------------------------------------------------
+  test:
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/app
+      - /app/node_modules       # anonymous vol: ホストを汚さない
+    environment:
+      - NODE_ENV=test
+      - NEXT_TELEMETRY_DISABLED=1
+    command: npx vitest --watch
+    stdin_open: true            # Vitest の対話操作を有効化
+    tty: true
+    restart: unless-stopped

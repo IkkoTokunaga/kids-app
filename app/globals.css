@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* ==========================================================
+   Tailwind CSS v4 — デザイントークン定義
+   カラーシステム: OKLCH (知育アプリ向けパステル)
+   ========================================================== */
+@theme {
+  /* ----------------------------------------------------------
+     フォント
+     layout.tsx の next/font が --font-rounded-var を注入する
+     ---------------------------------------------------------- */
+  --font-sans: var(--font-rounded-var), "Hiragino Kaku Gothic ProN",
+    "Meiryo", "Yu Gothic", sans-serif;
+
+  /* ----------------------------------------------------------
+     パステルカラーシステム (OKLCH)
+     → bg-pastel-pink / text-pastel-pink 等のユーティリティが生成される
+     ---------------------------------------------------------- */
+  --color-pastel-pink:   oklch(0.93 0.06 350);
+  --color-pastel-blue:   oklch(0.93 0.06 240);
+  --color-pastel-orange: oklch(0.93 0.08  55);
+  --color-pastel-green:  oklch(0.93 0.08 145);
+  --color-pastel-purple: oklch(0.91 0.08 300);
+  --color-pastel-yellow: oklch(0.96 0.09  95);
+  --color-pastel-mint:   oklch(0.93 0.07 175);
+
+  /* ブランドカラー */
+  --color-brand:        oklch(0.55 0.20 250);
+  --color-brand-light:  oklch(0.88 0.10 250);
+  --color-surface:      oklch(0.99 0.005 250);
+  --color-surface-card: oklch(1.00 0.00   0);
+
+  /* テキストカラー */
+  --color-ink:       oklch(0.25 0.03 260);
+  --color-ink-muted: oklch(0.55 0.02 260);
+
+  /* ----------------------------------------------------------
+     カスタムボーダーラジウス
+     → rounded-kids / rounded-card / rounded-badge が生成される
+     ---------------------------------------------------------- */
+  --radius-kids:  1.5rem;
+  --radius-card:  1.25rem;
+  --radius-badge: 9999px;
+}
+
+/* ==========================================================
+   グローバルベーススタイル
+   ========================================================== */
+body {
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+}
