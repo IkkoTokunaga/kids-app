@@ -16,6 +16,7 @@ type App = {
   bg: string;
   iconBg: string;
   badgeColor: string;
+  href?: string;
 };
 
 const apps: App[] = [
@@ -28,6 +29,7 @@ const apps: App[] = [
     bg: "bg-pastel-pink",
     iconBg: "bg-pink-100",
     badgeColor: "text-pink-700 bg-pink-100",
+    href: "https://kids-quiz-meiro.vercel.app/",
   },
   {
     id: "kazu",
@@ -160,10 +162,10 @@ function Hero() {
    アプリカードコンポーネント
    ===================================================== */
 function AppCard({ app }: { app: App }) {
-  return (
+  const cardBody = (
     <article
       className={`${app.bg} rounded-card p-6 flex flex-col items-center text-center gap-4 shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-md`}
-      aria-label={`${app.title} - 準備中`}
+      aria-label={`${app.title} - ${app.href ? "リンクあり" : "準備中"}`}
     >
       {/* アイコン */}
       <div
@@ -185,14 +187,28 @@ function AppCard({ app }: { app: App }) {
         {app.description}
       </p>
 
-      {/* Coming Soon バッジ */}
+      {/* ステータスバッジ */}
       <span
         className={`${app.badgeColor} text-xs font-bold px-4 py-1.5 rounded-badge`}
-        aria-label="準備中"
+        aria-label={app.href ? "あそんでみる" : "準備中"}
       >
-        🚧 Coming Soon
+        {app.href ? "▶ あそんでみる" : "🚧 Coming Soon"}
       </span>
     </article>
+  );
+
+  if (!app.href) return cardBody;
+
+  return (
+    <a
+      href={app.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block rounded-card focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/30"
+      aria-label={`${app.title} を新しいタブで開く`}
+    >
+      {cardBody}
+    </a>
   );
 }
 
