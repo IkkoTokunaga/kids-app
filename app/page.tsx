@@ -50,6 +50,7 @@ const apps: App[] = [
     bg: "bg-pastel-orange",
     iconBg: "bg-orange-100",
     badgeColor: "text-orange-700 bg-orange-100",
+    href: "https://kids-oekaki-cgoly5x9l-ikkotokunagas-projects.vercel.app/",
   },
   {
     id: "oto",
