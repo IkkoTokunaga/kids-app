@@ -43,14 +43,15 @@ CMD ["npm", "run", "dev"]
 
 # ----------------------------------------------------------
 # builder: 本番ビルド用
+# npm ci は devDependencies 必須（Tailwind v4 / @tailwindcss/postcss 等）
+# NODE_ENV=production のまま ci すると dev が省略され next build が失敗する
 # ----------------------------------------------------------
 FROM base AS builder
-ENV NODE_ENV=production
-
 COPY package*.json ./
 RUN npm ci
 
 COPY . .
+ENV NODE_ENV=production
 RUN npm run build
 
 # ----------------------------------------------------------

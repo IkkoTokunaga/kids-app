@@ -2,9 +2,13 @@
   "name": "kids-app-portfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:ci": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest --watch",
