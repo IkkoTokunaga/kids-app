@@ -61,6 +61,7 @@ const apps: App[] = [
     bg: "bg-pastel-green",
     iconBg: "bg-green-100",
     badgeColor: "text-green-700 bg-green-100",
+    href: "https://kids-sound.vercel.app/",
   },
   {
     id: "katachi",
