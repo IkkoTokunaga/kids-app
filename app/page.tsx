@@ -72,6 +72,7 @@ const apps: App[] = [
     bg: "bg-pastel-purple",
     iconBg: "bg-purple-100",
     badgeColor: "text-purple-700 bg-purple-100",
+    href: "https://kids-shape.vercel.app/",
   },
   {
     id: "iro",
